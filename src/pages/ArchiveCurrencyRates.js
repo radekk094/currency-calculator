@@ -18,7 +18,7 @@ class ArchiveCurrencyRates extends Component {
     ]
 
     handleDataFetch = () => {
-        const apiWebsite = `http://api.nbp.pl/api/exchangerates/tables/a/${this.state.selectedDate}?format=json`;
+        const apiWebsite = `https://api.nbp.pl/api/exchangerates/tables/a/${this.state.selectedDate}?format=json`;
 
         fetch(apiWebsite)
             .then(response => {

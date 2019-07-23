@@ -16,7 +16,7 @@ class CurrencyRates extends Component {
     ]
 
     handleDataFetch = () => {
-        const apiWebsite = "http://api.nbp.pl/api/exchangerates/tables/a?format=json";
+        const apiWebsite = "https://api.nbp.pl/api/exchangerates/tables/a?format=json";
 
         fetch(apiWebsite)
             .then(response => {
