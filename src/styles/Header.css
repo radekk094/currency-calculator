@@ -1,0 +1,12 @@
+div#pageTitle {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    padding: 100px 0px 50px 0px;
+}
+
+div#pageTitle h1 {
+    color: #E1E8EE;
+    margin: 0 auto;
+    font-size: 40px;
+}

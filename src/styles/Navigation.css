@@ -1,0 +1,43 @@
+header nav {
+    background-color: #82a7b8;
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+header nav ul {
+    width: 100%;
+    float: left;
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: block;
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    background-color: #82a7b8;
+}
+
+header nav ul li a {
+    font-size: 16px;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #3d4145;
+    transition: 1.5s;
+    text-align: center;
+}
+
+header nav ul li a.active {
+    color: white;
+}
+
+header nav ul li a:not(.active):hover {
+    background-color: #3b89ad;
+    color:white;
+    transition: 1.5s;
+}

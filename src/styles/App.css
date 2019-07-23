@@ -1,0 +1,81 @@
+div, header, nav, main, section, footer {
+  height: auto;
+  overflow: auto;
+}
+  
+header, footer {
+  background-color: #4b5559;
+}
+  
+main {
+  background-color: #6d8282;
+}
+
+main section {
+  width: 80%;
+  margin: 20px auto 40px auto;
+}
+
+section#mainContent h2 {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 30px;
+  color: #E1E8EE;
+}
+
+section#mainContent h3 {
+  margin: 5px;
+  font-size: 25px;
+  color: #E1E8EE;
+  text-align: center;
+}
+
+section#mainContent button {
+  display: block;
+  margin: 30px auto 0px auto;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  font-weight: bold;
+  background-color: #82a7b8;
+  color: #3d4145;
+  border: 2px solid #3d4145;
+  cursor: pointer;
+  transition: 1.5s;
+}
+
+section#mainContent button:hover {
+  background-color: #3b89ad;
+  color:white;
+  transition: 1.5s;
+}
+
+section#mainContent table {
+  margin: 30px auto 0px auto;
+  border-spacing: 10px;
+  text-transform: uppercase;
+}
+
+section#mainContent table tr td {
+  background-color: #E1E8EE;
+  padding: 10px 30px;
+  vertical-align: middle;
+}
+
+section#mainContent table tr:first-child td {
+  text-align: center;
+  font-weight: bold;
+}
+
+section#mainContent table tr td:first-child, section#mainContent table tr td:last-child {
+  text-align: center;
+}
+
+section#mainContent form {
+  margin: 30px auto;
+  text-align: center;
+  font-weight: bold;
+  color: #E1E8EE;
+  line-height: 2.5;
+}
