@@ -3,6 +3,7 @@ import React from 'react';
 const CurrencyHistoryTable = (props) => {
     const { currencyCode, downloadDate, currencyHistory } = props;
 
+    // table rows with currency history data
     const currenciesTable = currencyHistory.map(currency => (
         <tr key={currency.effectiveDate}>
             <td>{currency.effectiveDate}</td>

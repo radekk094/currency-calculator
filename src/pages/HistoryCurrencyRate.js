@@ -3,18 +3,20 @@ import CurrencyHistoryTable from '../components/CurrencyHistoryTable';
 
 class HistoryCurrencyRate extends Component {
     state = {
-        selectedCurrency: "EUR",
-        selectedDateFrom: "",
-        selectedDateTo: "",
-        downloadDate: "",
-        currencyHistory: [],
-        afterDownload: false
+        selectedCurrency: "EUR", // currency, selected to download data
+        selectedDateFrom: "", // date from in the date range
+        selectedDateTo: "", // date to in the date range
+        downloadDate: "", // date of downloading data from API url
+        currencyHistory: [], // array with the currency history
+        afterDownload: false // is App after downloading data from API url?
     }
 
+    // array with codes of currencies, which was selected to display in the App
     selectedCurrencies = [
         "EUR", "USD", "GBP", "CHF", "CZK", "AUD", "CAD", "DKK", "NOK", "SEK", "BGN", "JPY", "TRY"
     ]
 
+    // method to download data from API url
     handleDataFetch = () => {
         const apiWebsite = `https://api.nbp.pl/api/exchangerates/rates/a/${this.state.selectedCurrency}/${this.state.selectedDateFrom}/${this.state.selectedDateTo}?format=json`;
 
@@ -22,8 +24,6 @@ class HistoryCurrencyRate extends Component {
             .then(response => {
                 if (response.ok) {
                     return response;
-                } else {
-                    alert("Błąd");
                 }
                 throw Error(response.status);
             })
@@ -40,6 +40,7 @@ class HistoryCurrencyRate extends Component {
             .catch(error => console.log(error));
     }
 
+    // method, which changes the state with data from the form and resets boolean variable from the state (because after changing data, App shouldn't show the table before click in form submit)
     handleDataChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -47,17 +48,18 @@ class HistoryCurrencyRate extends Component {
         });
     }
 
+    // method, which checks if date range is correct and if yes - it calls method handleDataFetch to download data from the API url
     handleSubmit = (e) => {
         e.preventDefault();
         let dateFrom = new Date(this.state.selectedDateFrom);
         let dateTo = new Date(this.state.selectedDateTo);
-        console.log(((dateTo.getTime() - dateFrom.getTime()) / (1000 * 60 * 60 * 24)) + 1);
         if ((((dateTo.getTime() - dateFrom.getTime()) / (1000 * 60 * 60 * 24)) + 1) > 366) {
             return alert("Jednorazowo możesz wybrać zakres max 366 dni.");
         }
         this.handleDataFetch();
     }
 
+    // method to set min and max date in the form
     dateScope = () => {
         const maxDate = new Date();
         let minDate = new Date();
@@ -65,6 +67,7 @@ class HistoryCurrencyRate extends Component {
         return ([this.setDateFormat(minDate), this.setDateFormat(maxDate)]);
     }
 
+    // method to format min and max date to the form
     setDateFormat = (dateToFormat) => {
         const days = dateToFormat.getDate();
         const month = (dateToFormat.getMonth() + 1);
@@ -72,6 +75,7 @@ class HistoryCurrencyRate extends Component {
         return `${year}-${(month <= 9) ? ("0" + month) : month}-${(days <= 9) ? ("0" + days) : days}`;
     }
 
+    // rendering the component with two parts - form with datepicker and currency to select and table with data from the API url
     render() {
         const { selectedCurrency, selectedDateFrom, selectedDateTo, downloadDate, currencyHistory, afterDownload } = this.state;
         const currencyOptions = this.selectedCurrencies.map(currency => (
@@ -86,9 +90,23 @@ class HistoryCurrencyRate extends Component {
                         {currencyOptions}
                     </select><br />
                     Data od:&nbsp;
-                    <input name="selectedDateFrom" type="date" min={this.dateScope()[0]} max={this.dateScope()[1]} value={selectedDateFrom} onChange={this.handleDataChange} /><br />
-                    Data od:&nbsp;
-                    <input name="selectedDateTo" type="date" min={this.dateScope()[0]} max={this.dateScope()[1]} value={selectedDateTo} onChange={this.handleDataChange} />
+                    <input
+                        name="selectedDateFrom"
+                        type="date"
+                        min={this.dateScope()[0]}
+                        max={this.dateScope()[1]}
+                        value={selectedDateFrom}
+                        onChange={this.handleDataChange}
+                    /><br />
+                    Data do:&nbsp;
+                    <input
+                        name="selectedDateTo"
+                        type="date"
+                        min={this.dateScope()[0]}
+                        max={this.dateScope()[1]}
+                        value={selectedDateTo}
+                        onChange={this.handleDataChange}
+                    />
                     <button>Wyszukaj dane</button>
                 </form>
                 {afterDownload ? (

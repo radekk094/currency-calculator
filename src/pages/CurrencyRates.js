@@ -4,17 +4,19 @@ import CurrencyCalculator from '../components/CurrencyCalculator';
 
 class CurrencyRates extends Component {
     state = {
-        currencies: [],
-        sortedCurrencies: [],
-        beforeSort: true,
-        publicationDate: "",
-        downloadDate: ""
+        currencies: [], // array with all currencies from the API url
+        sortedCurrencies: [], // array with currencies selected to App
+        beforeSort: true, // is App before selecting currencies?
+        publicationDate: "", // date of publication data on NBP website
+        downloadDate: "" // date of downloading data from API url
     }
 
+    // array with codes of currencies, which was selected to display in the App
     selectedCurrencies = [
         "EUR", "USD", "GBP", "CHF", "CZK", "AUD", "CAD", "DKK", "NOK", "SEK", "BGN", "JPY", "TRY"
     ]
 
+    // method to download data from API url
     handleDataFetch = () => {
         const apiWebsite = "https://api.nbp.pl/api/exchangerates/tables/a?format=json";
 
@@ -32,6 +34,7 @@ class CurrencyRates extends Component {
                 const downloadDate = new Date();
                 this.setState({
                     currencies,
+                    beforeSort: true,
                     publicationDate: publicationDate.toLocaleDateString(),
                     downloadDate: downloadDate.toLocaleString()
                 });
@@ -39,6 +42,7 @@ class CurrencyRates extends Component {
             .catch(error => console.log(error));
     }
 
+    // method to select only some currencies from downloaded data (including only selectedCurrencies array)
     sortCurrencies = () => {
         const sortedCurrencies = [];
         const plCurrency = {
@@ -55,28 +59,29 @@ class CurrencyRates extends Component {
             });
         });
         this.setState({
-            sortedCurrencies
+            sortedCurrencies,
+            beforeSort: false
         });
     }
 
+    // method to handle refresh button (re-downloading data)
     handleRefreshClick = () => {
         this.handleDataFetch();
-        this.sortCurrencies();
     }
 
+    // method to download first time data from the API url, after first rendering of the component
     componentDidMount() {
         this.handleDataFetch();
     }
 
+    // method, which checks after rendering, if the App has already selected currencies, included in selectedCurrencies array - if not, it calls a method sortCurrencies, which do it
     componentDidUpdate() {
         if (this.state.beforeSort) {
             this.sortCurrencies();
-            this.setState({
-                beforeSort: false
-            });
         }
     }
 
+    // rendering the component with two parts - table with data from the API url and currency calculator
     render() {
         const { sortedCurrencies, beforeSort, publicationDate, downloadDate } = this.state;
 

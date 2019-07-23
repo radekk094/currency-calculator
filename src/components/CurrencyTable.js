@@ -3,6 +3,7 @@ import React from 'react';
 const CurrencyTable = (props) => {
     const { sortedCurrencies, beforeSort, publicationDate, downloadDate, refreshButtonClick, tableCategory } = props;
 
+    // table rows with currencies data
     const currenciesTable = sortedCurrencies.map(currency => (
         (currency.code === "PLN") ? null : (
             <tr key={currency.code}>
@@ -13,6 +14,7 @@ const CurrencyTable = (props) => {
         )
     ));
 
+    // displaying some information and table with currencies data
     const result = beforeSort ? ((tableCategory === "Archiwalne") ? (
         <>
             <h2>Wybierz datę i kliknij przycisk.</h2>

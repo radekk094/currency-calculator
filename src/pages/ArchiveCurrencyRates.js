@@ -4,19 +4,21 @@ import CurrencyCalculator from '../components/CurrencyCalculator';
 
 class ArchiveCurrencyRates extends Component {
     state = {
-        currencies: [],
-        sortedCurrencies: [],
-        beforeSort: true,
-        afterDownload: false,
-        selectedDate: "",
-        publicationDate: "",
-        downloadDate: ""
+        currencies: [], // array with all currencies from the API url
+        sortedCurrencies: [], // array with currencies selected to App
+        beforeSort: true, // is App before selecting currencies?
+        afterDownload: false, // is App after downloading data from API url?
+        selectedDate: "", // date selected in form
+        publicationDate: "", // date selected in form (but in a different format)
+        downloadDate: "" // date of downloading data from API url
     }
 
+    // array with codes of currencies, which was selected to display in the App
     selectedCurrencies = [
         "EUR", "USD", "GBP", "CHF", "CZK", "AUD", "CAD", "DKK", "NOK", "SEK", "BGN", "JPY", "TRY"
     ]
 
+    // method to download data from API url
     handleDataFetch = () => {
         const apiWebsite = `https://api.nbp.pl/api/exchangerates/tables/a/${this.state.selectedDate}?format=json`;
 
@@ -25,7 +27,7 @@ class ArchiveCurrencyRates extends Component {
                 if (response.ok) {
                     return response;
                 } else {
-                    alert("Brak danych dla wybranej daty. Wybierz inną datę!");
+                    alert("Brak danych dla wybranej daty. Wybierz inną datę.");
                 }
                 throw Error(response.status);
             })
@@ -44,6 +46,7 @@ class ArchiveCurrencyRates extends Component {
             .catch(error => console.log(error));
     }
 
+    // method to select only some currencies from downloaded data (including only selectedCurrencies array)
     sortCurrencies = () => {
         const sortedCurrencies = [];
         const plCurrency = {
@@ -60,10 +63,12 @@ class ArchiveCurrencyRates extends Component {
             });
         });
         this.setState({
-            sortedCurrencies
+            sortedCurrencies,
+            beforeSort: false
         });
     }
 
+    // method, which changes the state with data from the form and resets boolean variables from the state (because after changing data, App shouldn't show the table before click in form submit)
     handleDataChange = (e) => {
         this.setState({
             selectedDate: e.target.value,
@@ -72,14 +77,16 @@ class ArchiveCurrencyRates extends Component {
         });
     }
 
+    // method, which checks if user has selected date in the form and if yes - it calls method handleDataFetch to download data from the API url
     handleSubmit = (e) => {
         e.preventDefault();
         if (!this.state.selectedDate) {
-            return alert("Wybierz datę!");
+            return alert("Wybierz datę.");
         }
         this.handleDataFetch();
     }
 
+    // method to set min and max date in the form
     dateScope = () => {
         const maxDate = new Date();
         let minDate = new Date();
@@ -87,6 +94,7 @@ class ArchiveCurrencyRates extends Component {
         return ([this.setDateFormat(minDate), this.setDateFormat(maxDate)]);
     }
 
+    // method to format min and max date to the form
     setDateFormat = (dateToFormat) => {
         const days = dateToFormat.getDate();
         const month = (dateToFormat.getMonth() + 1);
@@ -94,22 +102,28 @@ class ArchiveCurrencyRates extends Component {
         return `${year}-${(month <= 9) ? ("0" + month) : month}-${(days <= 9) ? ("0" + days) : days}`;
     }
 
+    // method, which checks after rendering, if the App has already downloaded data and selected currencies, included in selectedCurrencies array - if not, it calls a method sortCurrencies, which do it
     componentDidUpdate() {
         if (this.state.afterDownload && this.state.beforeSort) {
             this.sortCurrencies();
-            this.setState({
-                beforeSort: false
-            });
         }
     }
 
+    // rendering the component with three parts - form with datepicker, table with data from the API url and currency calculator
     render() {
         const { sortedCurrencies, beforeSort, publicationDate, downloadDate, selectedDate } = this.state;
 
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="date" min={this.dateScope()[0]} max={this.dateScope()[1]} value={selectedDate} onChange={this.handleDataChange} />
+                    Data:&nbsp;
+                    <input
+                        type="date"
+                        min={this.dateScope()[0]}
+                        max={this.dateScope()[1]}
+                        value={selectedDate}
+                        onChange={this.handleDataChange}
+                    />
                     <button>Wyszukaj dane</button>
                 </form>
                 <CurrencyTable

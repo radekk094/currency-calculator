@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 class CurrencyCalculator extends Component {
     state = {
-        currency1: "EUR",
-        currency2: "PLN",
-        moneyAmount: "",
-        result: ""
+        currency1: "EUR", // first currency to calculation
+        currency2: "PLN", // second currency to calculation
+        moneyAmount: "", // money amount to calculation
+        result: "" // result of the calculation
     }
 
+    // method, which changes the state with data from the form and resets result of the calculation (because after changing data, App shouldn't show the result)
     handleChange = (e) => {
         this.setState({
             result: "",
@@ -15,14 +16,16 @@ class CurrencyCalculator extends Component {
         });
     }
 
+    // method, which checks if user has completed data in the form and if yes - it calls method to calculate the result
     handleSubmit = (e) => {
         e.preventDefault();
         if (!this.state.moneyAmount) {
-            return alert("Wprowadź kwotę!");
+            return alert("Wprowadź kwotę.");
         }
         this.countCurrencies(this.state.currency1, this.state.currency2);
     }
 
+    // method, which calculates the result
     countCurrencies = (currency1, currency2) => {
         let currencyRate1;
         let currencyRate2;
@@ -43,11 +46,12 @@ class CurrencyCalculator extends Component {
             });
 
             this.setState({
-                result: ((currencyRate1 / currencyRate2) * this.state.moneyAmount).toFixed(2)
+                result: ((currencyRate1 / currencyRate2) * this.state.moneyAmount)
             });
         }
     }
 
+    // rendering the component in two parts - form with data to calculate and the result of the calculation
     render() {
         const currencyOptions = this.props.sortedCurrencies.map(currency => (
             <option key={currency.code}>{currency.code}</option>
