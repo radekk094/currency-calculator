@@ -1,12 +1,22 @@
 footer {
-    padding: 5px;
+    padding: 10px 0;
+    background-color: #bbb;
     text-align: center;
-    font-size: 14px;
-    color: white;
+    font-size: 18px;
 }
 
 footer span {
-    font-size: 14px;
     font-style: italic;
-    color: white;
+}
+
+@media (max-width: 767px) {
+    footer {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 359px) {
+    footer {
+        font-size: 12px;
+    }
 }

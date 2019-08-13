@@ -8,16 +8,16 @@ const Header = () => {
         <>
             <Switch>
                 <Route path="/" exact render={() => (
-                    <div id="pageTitle"><h1>Sprawdź aktualne kursy walut i przelicz kwotę</h1></div>
+                    <h1>Sprawdź aktualne kursy walut i przelicz kwotę</h1>
                 )} />
                 <Route path="/archive" render={() => (
-                    <div id="pageTitle"><h1>Sprawdź archiwalne kursy walut i przelicz kwotę</h1></div>
+                    <h1>Sprawdź archiwalne kursy walut i przelicz kwotę</h1>
                 )} />
                 <Route path="/history" render={() => (
-                    <div id="pageTitle"><h1>Wyświetl historię zmian kursu wybranej waluty</h1></div>
+                    <h1>Wyświetl historię zmian kursu wybranej waluty</h1>
                 )} />
                 <Route render={() => (
-                    <div id="pageTitle"><h1>Strona nie istnieje</h1></div>
+                    <h1>Strona nie istnieje</h1>
                 )} />
             </Switch>
         </>

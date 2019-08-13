@@ -87,6 +87,12 @@ class CurrencyRates extends Component {
 
         return (
             <>
+                {beforeSort ? null : (
+                    <CurrencyCalculator
+                        sortedCurrencies={sortedCurrencies}
+                        tableCategory="Aktualne"
+                    />
+                )}
                 <CurrencyTable
                     sortedCurrencies={sortedCurrencies}
                     beforeSort={beforeSort}
@@ -95,12 +101,6 @@ class CurrencyRates extends Component {
                     refreshButtonClick={this.handleRefreshClick}
                     tableCategory="Aktualne"
                 />
-                {beforeSort ? null : (
-                    <CurrencyCalculator
-                        sortedCurrencies={sortedCurrencies}
-                        tableCategory="Aktualne"
-                    />
-                )}
             </>
         );
     }

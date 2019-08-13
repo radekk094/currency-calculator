@@ -60,10 +60,8 @@ class CurrencyCalculator extends Component {
         const { currency1, currency2, moneyAmount, result } = this.state;
 
         return (
-            <>
+            <section>
                 <h2>Kalkulator walut</h2>
-                <h3>Kwota zostanie obliczona na podstawie danych z powyższej tabeli.</h3>
-                {(this.props.tableCategory === "Aktualne") ? (<h3>W razie potrzeby odśwież dane.</h3>) : null}
                 <form onSubmit={this.handleSubmit}>
                     Waluta, którą chcesz wpłacić:&nbsp;
                     <select name="currency1" value={currency1} onChange={this.handleChange}>
@@ -78,7 +76,7 @@ class CurrencyCalculator extends Component {
                     <button>Oblicz</button>
                 </form>
                 <h3>{result ? (`${parseFloat(moneyAmount).toFixed(2)} ${currency1} = ${parseFloat(result).toFixed(2)} ${currency2}`) : <br />}</h3>
-            </>
+            </section>
         );
     }
 }

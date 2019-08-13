@@ -11,14 +11,14 @@ class App extends Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <div className="app">
-          <header>
+          <nav>
             <Navigation />
+          </nav>
+          <header>
             <Header />
           </header>
           <main>
-            <section id="mainContent">
-              <Page />
-            </section>
+            <Page />
           </main>
           <footer>
             <Footer />

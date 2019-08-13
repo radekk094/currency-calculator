@@ -1,43 +1,106 @@
-header nav {
-    background-color: #82a7b8;
-    display: flex;
-    width: 100%;
+nav {
     position: fixed;
     top: 0;
-    z-index: 1;
+    left: 0;
+    width: 100%;
+    max-width: 1600px;
+    height: 60px;
+    padding: 0 50px;
+    background-color: white;
+    border-bottom: 2px solid #ccc;
 }
 
-header nav ul {
-    width: 100%;
-    float: left;
+nav ul {
+    display: flex;
     list-style-type: none;
 }
 
-header nav ul li {
-    display: block;
-    width: 33.33%;
-    float: left;
-    text-align: center;
-    font-weight: bold;
-    background-color: #82a7b8;
+nav ul li {
+    flex-basis: 30%;
+    flex-grow: 1;
 }
 
-header nav ul li a {
-    font-size: 16px;
+nav ul li a {
     display: block;
-    padding: 10px 20px;
+    padding: 0 10px;
+    color: black;
+    font-size: 20px;
     text-decoration: none;
-    color: #3d4145;
-    transition: 1.5s;
+    font-weight: bold;
+    text-transform: uppercase;
     text-align: center;
+    line-height: 60px;
+    transition: 0.5s;
 }
 
-header nav ul li a.active {
-    color: white;
+nav ul li a i {
+    padding-right: 20px;
+    font-size: 26px;
 }
 
-header nav ul li a:not(.active):hover {
-    background-color: #3b89ad;
-    color:white;
-    transition: 1.5s;
+nav ul li a.active {
+    color: #8a6501;
+    text-decoration: underline;
+}
+
+nav ul li a:not(.active):hover {
+    color: #b58502;
+}
+
+@media (min-width: 1600px) {
+    nav {
+        left: calc((100vw - 1600px) / 2);
+    }
+}
+
+@media (max-width: 1279px) {
+    nav {
+        padding: 0;
+    }
+}
+
+@media (max-width: 1023px) {
+    nav {
+        height: 56px
+    }
+    
+    nav ul li a {
+        font-size: 16px;
+        line-height: 56px;
+    }
+
+    nav ul li a i {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    nav {
+        height: 54px
+    }
+
+    nav ul li a {
+        font-size: 14px;
+        line-height: 54px;
+    }
+
+    nav ul li a i {
+        padding-right: 10px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 639px) {
+    nav {
+        padding: 0 5%;
+    }
+
+    nav ul li a span {
+        display: none;
+    }
+
+    nav ul li a i {
+        font-size: 24px;
+        vertical-align: middle;
+    }
 }

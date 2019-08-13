@@ -1,81 +1,170 @@
-div, header, nav, main, section, footer {
-  height: auto;
-  overflow: auto;
+div.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fafafa;
 }
-  
-header, footer {
-  background-color: #4b5559;
-}
-  
+
 main {
-  background-color: #6d8282;
+  flex-grow: 1;
+  margin: 0 auto;
+  padding: 0 15px 80px;
 }
 
-main section {
-  width: 80%;
-  margin: 20px auto 40px auto;
+main h2 {
+  margin: 60px 0 40px;
+  border-bottom: 2px solid #888;
+  font-size: 40px;
 }
 
-section#mainContent h2 {
-  margin-top: 60px;
-  margin-bottom: 40px;
-  text-align: center;
-  font-size: 30px;
-  color: #E1E8EE;
-}
-
-section#mainContent h3 {
-  margin: 5px;
+main h3 {
+  margin: 5px 0;
   font-size: 25px;
-  color: #E1E8EE;
-  text-align: center;
 }
 
-section#mainContent button {
+main button {
   display: block;
   margin: 30px auto 0px auto;
-  padding: 10px 30px;
+  padding: 5px 30px;
+  background-color: white;
   text-transform: uppercase;
-  text-decoration: none !important;
+  text-decoration: none;
   font-weight: bold;
-  background-color: #82a7b8;
-  color: #3d4145;
   border: 2px solid #3d4145;
+  border-radius: 12px;
   cursor: pointer;
-  transition: 1.5s;
+  transition: 0.5s;
 }
 
-section#mainContent button:hover {
-  background-color: #3b89ad;
-  color:white;
-  transition: 1.5s;
+main button:hover {
+  background-color: #b58502;
 }
 
-section#mainContent table {
+/* SECTION - CURRENCY CALCULATOR */
+
+main section {
+  display: flex;
+  flex-direction: column;
+}
+
+main section h3 {
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  padding: 10px 20px;
+  background-color: white;
+}
+
+/* TABLES WITH DOWNLOADED DATA */
+
+main table {
   margin: 30px auto 0px auto;
-  border-spacing: 10px;
   text-transform: uppercase;
+  border-spacing: 0;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
-section#mainContent table tr td {
-  background-color: #E1E8EE;
+main table tr td {
   padding: 10px 30px;
   vertical-align: middle;
+  text-align: left;
 }
 
-section#mainContent table tr:first-child td {
+main table tr:not(:last-child) td {
+  border-bottom: 1px solid #777;
+}
+
+main table tr:first-child td {
   text-align: center;
   font-weight: bold;
 }
 
-section#mainContent table tr td:first-child, section#mainContent table tr td:last-child {
+main table tr td:first-child, main table tr td:last-child {
   text-align: center;
 }
 
-section#mainContent form {
-  margin: 30px auto;
-  text-align: center;
+main form {
+  background-color: #d2e5fa;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  padding: 20px;
+  margin: 30px 0;
   font-weight: bold;
-  color: #E1E8EE;
   line-height: 2.5;
+}
+
+main form:first-child {
+  margin-top: 60px;
+}
+
+@media (max-width: 1023px) {
+  main h2 {
+    font-size: 36px;
+  }
+
+  main h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  main h2 {
+    font-size: 32px;
+  }
+
+  main h3 {
+    font-size: 20px;
+  }
+
+  main table {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 639px) {
+  main h2 {
+    font-size: 28px;
+  }
+
+  main h3 {
+    font-size: 16px;
+  }
+
+  main table tr td {
+    padding: 10px 15px;
+  }
+
+  main table tr:nth-child(n) td {
+    text-align: center;
+  }
+}
+
+@media (max-width: 459px) {
+  main {
+    padding: 0 15px 60px;
+  }
+
+  main h2 {
+    font-size: 24px;
+  }
+
+  main h3 {
+    font-size: 14px;
+  }
+
+  main section form {
+    margin-top: 10px;
+  }
+
+  main table tr td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 359px) {
+  main table tr td {
+    padding: 10px 5px;
+  }
 }

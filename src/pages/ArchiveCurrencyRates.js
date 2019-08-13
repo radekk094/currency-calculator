@@ -126,6 +126,12 @@ class ArchiveCurrencyRates extends Component {
                     />
                     <button>Wyszukaj dane</button>
                 </form>
+                {beforeSort ? null : (
+                    <CurrencyCalculator
+                        sortedCurrencies={sortedCurrencies}
+                        tableCategory="Archiwalne"
+                    />
+                )}
                 <CurrencyTable
                     sortedCurrencies={sortedCurrencies}
                     beforeSort={beforeSort}
@@ -133,12 +139,6 @@ class ArchiveCurrencyRates extends Component {
                     downloadDate={downloadDate}
                     tableCategory="Archiwalne"
                 />
-                {beforeSort ? null : (
-                    <CurrencyCalculator
-                        sortedCurrencies={sortedCurrencies}
-                        tableCategory="Archiwalne"
-                    />
-                )}
             </>
         );
     }

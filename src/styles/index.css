@@ -1,13 +1,28 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 18px;
-  text-align: justify;
-  line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html, body {
-    min-height: 100vh;
+html {
+    font-family: 'Saira', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+input, button, select {
+    font-family: 'Saira', sans-serif;
+    font-size: 20px;
+}
+
+@media (max-width: 767px) {
+    html, input, button, select {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 639px) {
+    html, input, button, select {
+        font-size: 14px;
+    }
 }
