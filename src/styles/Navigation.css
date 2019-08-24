@@ -6,8 +6,8 @@ nav {
     max-width: 1600px;
     height: 60px;
     padding: 0 50px;
-    background-color: white;
     border-bottom: 2px solid #ccc;
+    background-color: white;
 }
 
 nav ul {
