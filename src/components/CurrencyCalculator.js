@@ -72,7 +72,14 @@ class CurrencyCalculator extends Component {
                         {currencyOptions}
                     </select><br />
                     Kwota do przeliczenia:&nbsp;
-                    <input name="moneyAmount" type="number" value={moneyAmount} onChange={this.handleChange} /><br />
+                    <input
+                        name="moneyAmount"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={moneyAmount}
+                        onChange={this.handleChange}
+                    /><br />
                     <button>Oblicz</button>
                 </form>
                 <h3>{result ? (`${parseFloat(moneyAmount).toFixed(2)} ${currency1} = ${parseFloat(result).toFixed(2)} ${currency2}`) : <br />}</h3>
